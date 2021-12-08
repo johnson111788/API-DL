@@ -2,7 +2,7 @@
 # @Time     : 2021/12/06
 # @Author   : Johnson-Chou
 # @Email    : johnson111788@gmail.com
-# @FileName : interpolate.py
+# @FileName : interpolation.py
 # @Reference: https://blog.csdn.net/weixin_35763055/article/details/112537066
 
 import numpy as np
