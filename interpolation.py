@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Time     : 2021/12/06
-# @Author   : Johnson-Chou
+# @Author   : Yu-Cheng, Chou
 # @Email    : johnson111788@gmail.com
 # @FileName : interpolate.py
 # @Reference: https://stackoverflow.com/questions/12729228/simple-efficient-bilinear-interpolation-of-images-in-numpy-and-python

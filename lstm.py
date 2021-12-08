@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Time     : 2021/12/08
-# @Author   : Johnson-Chou
+# @Author   : Yu-Cheng, Chou
 # @Email    : johnson111788@gmail.com
 # @FileName : lstm.py
 # @Reference: https://blog.varunajayasiri.com/numpy_lstm.html

@@ -6,47 +6,49 @@
 
 import numpy as np
 
-
-def conv2D(input_2Ddata, kern, in_size, out_size, stride_h=1, stride_w=1):
-    kernel_size_h, kernel_size_w = kern.shape
-    (h_in, w_in) = in_size
-    (h_out, w_out) = out_size
-    out_2Ddata = np.zeros(shape=out_size)
-
-    for index_h_out, index_h_in in zip(range(h_out), range(0, h_in + 2 * padding_size - kernel_size_h + 1, stride_h)):
-        for index_w_out, index_w_in in zip(range(w_out), range(0, w_in + 2 * padding_size - kernel_size_w + 1, stride_w)):
-            window = input_2Ddata[index_h_in:index_h_in + kernel_size_h, index_w_in:index_w_in + kernel_size_w]
-            out_2Ddata[index_h_out, index_w_out] = np.sum(kern * window)
-    return out_2Ddata
-
-
-h_in = 5
-w_in = 5
-channel_in = 4
-
-input_3Ddata = np.random.randn(h_in, w_in, channel_in)
-
-stride = 2
-kernel_size = 2
+channel_in = 3
+h_in, w_in = 5, 5
 channel_out = 4
-padding_size = 1
 
-h_out = (h_in - kernel_size + 2 * padding_size) // stride + 1
-w_out = (w_in - kernel_size + 2 * padding_size) // stride + 1
+kernel_size = 2
+padding = 1
+stride = 3
 
-padding = np.zeros(shape=(h_in + 2 * padding_size, w_in + 2 * padding_size, channel_in))
-padding[padding_size:-padding_size, padding_size:-padding_size] = input_3Ddata
 
-output_3Ddata = np.zeros(shape=(h_out, w_out, channel_out))
+def conv2d(input, kernel, stride):
+    output_2d = np.zeros(shape=(h_out, w_out))
 
-kernel = np.random.randn(channel_out, kernel_size, kernel_size, channel_in)
-bias = np.random.randn(channel_out)
+    # Notice upper bound
+    for index_h_in, index_h_out in zip(range(0, h_in + 2 * padding - kernel_size + 1, stride), range(0, h_out)):
+        for index_w_in, index_w_out in zip(range(0, w_in + 2 * padding - kernel_size + 1, stride), range(0, w_out)):
+            window = input[index_h_in:index_h_in + kernel_size, index_w_in:index_w_in + kernel_size]
+            output_2d[index_h_out, index_w_out] = np.sum(window * kernel)
 
-for ch_out in range(channel_out):
-    for ch_in in range(channel_in):
-        input_2Ddata = padding[:, :, ch_in]
-        kern = kernel[ch_out, :, :, ch_in]
-        output_3Ddata[:, :, ch_out] += conv2D(input_2Ddata, kern, (h_in, w_in), out_size=(h_out, w_out),
-                                              stride_h=stride,
-                                              stride_w=stride)
-    output_3Ddata[:, :, ch_out] += bias[ch_out]
+    return output_2d
+
+
+h_out = (h_in - kernel_size + 2 * padding) // stride + 1
+w_out = (w_in - kernel_size + 2 * padding) // stride + 1
+
+input = np.random.rand(h_in, w_in, channel_in)
+output = np.zeros(shape=(h_out, w_out, channel_out))
+
+input_pad = np.zeros(shape=(h_in + 2 * padding, w_in + 2 * padding, channel_in))
+if padding != 0:
+    input_pad[padding:-padding, padding:-padding] = input
+else:
+    input_pad = input
+
+kernel = np.random.rand(channel_out, kernel_size, kernel_size, channel_in)
+bias = np.random.rand(channel_out)  # one dim bias
+
+for index_channel_out in range(channel_out):  # out loop - in loop
+    for index_channel_in in range(channel_in):
+        kernel_slice = kernel[index_channel_out, :, :, index_channel_in]
+        input_2d = input_pad[:, :, index_channel_in]  # input_pad
+        output[:, :, index_channel_out] += conv2d(input_2d, kernel_slice, stride)
+
+    output[:, :, index_channel_out] += bias[index_channel_out]
+
+print('Input shape: ', input.shape)
+print('Output shape: ', output.shape)

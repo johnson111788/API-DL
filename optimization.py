@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Time     : 2021/12/06
-# @Author   : Johnson-Chou
+# @Author   : Yu-Cheng, Chou
 # @Email    : johnson111788@gmail.com
 # @FileName : interpolation.py
 # @Reference: https://blog.csdn.net/weixin_35763055/article/details/112537066

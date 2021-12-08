@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Time     : 2021/12/07
-# @Author   : Johnson-Chou
+# @Author   : Yu-Cheng, Chou
 # @Email    : johnson111788@gmail.com
 # @FileName : backpropagation.py
 
@@ -47,9 +47,9 @@ class Op2(object):
     def backward(self, grad):
         # q = a+b dq/da=1 dq/db=1
         # y = q*c dy/dq=c dy/dc=q
-        # TODO: dy/da = dy/dq * dq/da
-        #       dy/db = dy/dq * dq/db
-        #       dy/dc = q
+        # dy/da = dy/dq * dq/da
+        # dy/db = dy/dq * dq/db
+        # dy/dc = q
         grad_a = grad * self.param['c'] * 1  # dL/dy * dy/dq * dq/da
         grad_b = grad * self.param['c'] * 1  # dL/dy * dy/dq * dq/db
         grad_c = grad * (self.param['a'] + self.param['b'])  # dL/dy * dy/dc
@@ -79,7 +79,7 @@ class Op3(object):
 
     def backward(self, grad):
         # Sigmoid: @(x)=1/(1+e^(x)), d@(x)/dx = (1-@(x))@(x)
-        # TODO: dy/dw0 dy/dw1 dy/dw2
+        # dy/dw0 dy/dw1 dy/dw2
         grad_mid = (1 - self.forward()) * self.forward()
         grad_w2 = grad * grad_mid
         grad_w1 = grad * grad_mid * self.input['x1']
