@@ -1,6 +1,6 @@
 # <span id="API-DL"> Awesome Python Implementation - Deep Learning (API-DL)</span>
 
-This repository contains a number of Python implementations in deep learning to help you with your interview, including conv2d, conv3d, interpolation, pooling, activation, LSTM, optimization, and backpropagation. 
+This repository contains a number of Python implementations in deep learning to help you with your interview, including conv2d, conv3d, interpolation, pooling, activation, batch normalization, LSTM, optimization, and backpropagation. 
 
 If you have any suggestions, please feel free to contact me or directly pull the request. 
 
@@ -20,9 +20,11 @@ Contributed by *[Yu-Cheng Chou](johnson111788@gmail.com)*.
     - [2.3. Interpolation](#2.3_interpolation)
     - [2.4. Pooling](#2.4_pooling)
     - [2.5. Activation](#2.5_activation)
-    - [2.6. LSTM](#2.6_LSTM)
-    - [2.7. Optimization](#2.7_Optimization)
-    - [2.8. Backpropagation](#2.8_backpropagation)
+    - [2.6. Batch normalization](#2.6_Batchnorm)
+    - [2.7. Dropout](#2.7_dropout)
+    - [2.8. LSTM](#2.8_LSTM)
+    - [2.9. Optimization](#2.9_Optimization)
+    - [2.10. Backpropagation](#2.10_backpropagation)
     
     
 ## Overview
@@ -57,17 +59,23 @@ Pooling operation increases the receptive field, translation invariance with few
 
 ![](assest/activation.gif)
 
+### <span id="2.6_batchnorm"> 2.6 Batch normalization </span>
 
+![](assest/batchnorm.png)
 
-### <span id="2.6_LSTM"> 2.6 LSTM </span>
+### <span id="2.7_Dropout"> 2.7 Dropout </span>
+
+![](assest/dropout.png)
+
+### <span id="2.8_LSTM"> 2.8 LSTM </span>
 
 ![](assest/lstm.png)
 
-### <span id="2.7_Optimization"> 2.7 Optimization </span>
+### <span id="2.9_Optimization"> 2.9 Optimization </span>
 
 ![](assest/optimization.jpg)
 
-### <span id="2.8_backpropagation"> 2.8 Backpropagation </span>
+### <span id="2.10_backpropagation"> 2.10 Backpropagation </span>
 
 ![](assest/backpropagation.gif)
 

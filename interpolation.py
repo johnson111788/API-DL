@@ -38,9 +38,9 @@ import numpy as np
 
 # ###### align_corners #####
 #  True -> Pixels are regarded as a grid of points. Points at the corners are aligned.
-#  像素被视为网格的格子上的点,拐角处的像素对齐.可知是点之间是等间距的
+#  像素被视为网格的格子上的点，拐角处的像素对齐。可知是点之间是等间距的。
 #  False -> Pixels are regarded as 1x1 areas. Area boundaries, rather than their centers, are aligned.
-#  像素被视为网格的交叉线上的点, 拐角处的点依然是原图像的拐角像素,但是差值的点间却按照上图的取法取,导致点与点之间是不等距的
+#  像素被视为网格的交叉线上的点, 拐角处的点依然是原图像的拐角像素，但是差值的点间却按照上图的取法取，导致点与点之间是不等距的。
 
 # bilinear, True
 # tensor([[[[1.0000, 1.4000, 1.8000, 2.2000, 2.6000, 3.0000],
