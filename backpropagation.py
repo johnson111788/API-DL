@@ -4,6 +4,8 @@
 # @Email    : johnson111788@gmail.com
 # @FileName : backpropagation.py
 
+import numpy as np
+
 
 class Loss(object):
 
@@ -12,6 +14,12 @@ class Loss(object):
 
     def squared_loss_grad(self, pred, truth):
         return 2 * (pred - truth)  # dloss/dy_pred
+
+    def bce_loss(self, pred, truth):
+        return -np.log(pred) * truth
+
+    def bce_loss_grad(self, pred, truth):
+        return truth*(1/pred*np.log(10))
 
 
 class Op1(object):
@@ -75,7 +83,7 @@ class Op3(object):
 
     def forward(self):
         return 1 / (1 + 2.71828 ** -(
-                    self.input['x0'] * self.param['w0'] + self.input['x1'] * self.param['w1'] + self.param['w2']))
+                self.input['x0'] * self.param['w0'] + self.input['x1'] * self.param['w1'] + self.param['w2']))
 
     def backward(self, grad):
         # Sigmoid: @(x)=1/(1+e^(x)), d@(x)/dx = (1-@(x))@(x)
@@ -95,9 +103,39 @@ class Op3(object):
         return
 
 
+class Op4(object):
+    '''
+    y = L2(matrix_w * matrix_x)
+    '''
+    def __init__(self):
+        self.param = [[0.1, 0.5], [-0.3, 0.8]]
+        self.x = [0.2, 0.4]
+
+    def forward(self):
+        # (q0)[w00*x0 + w01*x1] (q1)[w10*x0 + w11*x1]
+        # q0**2 + q1**2
+
+        return np.sum((np.matmul(self.x, self.param))) ** 2
+
+    def backward(self, grad):
+        grad_00 = 2 * self.param[0][0] * grad
+        grad_01 = 2 * self.param[0][1] * grad
+        grad_10 = 2 * self.param[1][0] * grad
+        grad_11 = 2 * self.param[1][1] * grad
+        return grad_00, grad_01, grad_10, grad_11
+
+    def update(self, grad, lr=0.1):
+        grad_00, grad_01, grad_10, grad_11, = grad
+
+        self.param[0][0] -= lr * grad_00
+        self.param[0][1] -= lr * grad_01
+        self.param[1][0] -= lr * grad_10
+        self.param[1][1] -= lr * grad_11
+
+
 y_truth = 1
 lr = 0.01
-op = Op3()
+op = Op4()
 loss_func = Loss()
 while True:
     y_pred = op.forward()
