@@ -2,12 +2,14 @@
 
 This repository contains a number of Python implementations in deep learning to help you with your interview, including conv2d, conv3d, interpolation, pooling, activation, batch normalization, LSTM, optimization, and backpropagation. 
 
+Also, MHSA, GRPO, DPO, Diffusion, ROPE, and RMSNorm is added.
+
 If you have any suggestions, please feel free to contact me or directly pull the request. 
 
 
 Contributed by *[Yu-Cheng Chou](johnson111788@gmail.com)*.
 
---- *Last updated: 08/12/2021* --- 
+--- *Last updated: 11/06/2025* --- 
 
 ## <span id="1.1._Table_of_Contents"> 1.1. Table of Contents</span>
 
